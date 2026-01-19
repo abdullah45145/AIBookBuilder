@@ -20,7 +20,7 @@ export const createBook = async (req, res) => {
       chapters: parsedChapters || [],
     });
 
-    res.status(201).json(book);
+    res.status(201).json({ bookId: book._id, ...book.toObject() });
   } catch (error) {
     console.error("CREATE BOOK ERROR:", error);
     res.status(500).json({ message: "Server error" });
@@ -59,7 +59,6 @@ export const getBookbyid = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-
 
 /* ================= UPDATE BOOK ================= */
 export const updateBook = async (req, res) => {
